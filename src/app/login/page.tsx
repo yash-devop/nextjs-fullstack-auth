@@ -29,7 +29,7 @@ export default function LoginPage(){
 
     }
     const notify=(err:any)=>{
-        toast(err || "Login failed ! ")
+        toast("Login failed ! ")
     }
 
     useEffect(()=>{
@@ -52,9 +52,21 @@ export default function LoginPage(){
                 <label htmlFor="password">password</label>
                 <input type="password" name="password" className="h-10 px-4 text-black rounded-lg focus:outline-none" placeholder="Password" value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})} />
 
-                <button onClick={onSignin} className="text-base px-1 mt-3 rounded-[4px] h-[50px] w-[200px] font-medium border-solid border cursor-pointer bg-[#132734] text-blue-700 border-1 border-inset border-blue-400">
-                    Sign in
-                </button>
+                {
+                    buttonDisabled ? (
+                        <>
+                            <button className="bg-[#1a1919a6] text-white text-base px-1 mt-3 rounded-[4px] h-[50px] w-[200px] font-medium border-solid border cursor-pointer transition-all duration-100">
+                                Sign in
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={onSignin} className="text-base px-1 mt-3 rounded-[4px] h-[50px] w-[200px] font-medium border-solid border cursor-pointer bg-[#132734] text-blue-700 border-1 border-inset border-blue-400 transition-all duration-100">
+                                Sign in
+                            </button>
+                        </>
+                    )
+                }
                 <Link href={"/signup"} className="p-4 border mt-3">Visit Sign up Page</Link>
                 <Toaster/>
             </div>

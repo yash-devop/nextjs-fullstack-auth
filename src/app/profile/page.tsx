@@ -8,7 +8,7 @@ export default function UserProfile({params}:any) {
     const router = useRouter();
     const handleLogout=async()=>{
         try {
-            await axios.post('/api/users/logout')
+            await axios.get('/api/users/logout')
             toast.success("Log out successful !")
             setInterval(()=>{
                 router.push('/login')

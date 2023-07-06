@@ -19,9 +19,10 @@ export default function LoginPage(){
             const response = await axios.post('/api/users/login',user)
             console.log('response',response.data);
             toast.success("Login successful !")
-            setInterval(()=>{
-                router.push('/profile')
-            },3000)
+
+            router.push('/profile')
+            // setInterval(()=>{
+            // },3000)
         } catch (err:any) {
             notify(err);
             console.log(err)

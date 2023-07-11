@@ -17,7 +17,6 @@ export default function LoginPage(){
     const onSignin = async()=>{
         try {
             const response = await axios.post('/api/users/login',user)
-            console.log('response',response.data);
             toast.success("Login successful !")
 
             router.push('/profile')
@@ -52,7 +51,7 @@ export default function LoginPage(){
                 <input type="email" name="email" className="h-10 px-4 text-black rounded-lg focus:outline-none" placeholder="Email" value={user.email} onChange={(e)=>setUser({...user, email: e.target.value})} />
                 <label htmlFor="password">password</label>
                 <input type="password" name="password" className="h-10 px-4 text-black rounded-lg focus:outline-none" placeholder="Password" value={user.password} onChange={(e)=>setUser({...user, password: e.target.value})} />
-
+                <Link href={'/forgotpassword'} className="text-blue-300 pt-4">Forgot password ?</Link>
                 {
                     buttonDisabled ? (
                         <>

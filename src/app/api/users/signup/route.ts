@@ -3,6 +3,7 @@ import connect from "@/dbconfig/dbConfig";
 import UserModel from "@/models/UserModel";
 import { NextRequest , NextResponse } from "next/server";
 import bcryptjs from 'bcryptjs'
+import { sendEmail } from "@/helpers/mailer";
 
 
 connect()  //connection of the mongodb that we created in dbconfig.ts
@@ -36,6 +37,10 @@ export async function POST(request: NextRequest) {
 
        const savedUser = await newUser.save()
        console.log(savedUser);
+
+       //send verification email:
+       await sendEmail({email, emailType:"VERIFY",userID:savedUser._id})
+
 
        return NextResponse.json({message:"User Created Successfully"},{status:201})
        
